@@ -11,7 +11,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
     dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
     s = '',
-    toFixedFix = function(n, prec) {
+    toFixedFix = function (n, prec) {
       var k = Math.pow(10, prec);
       return '' + Math.round(n * k) / k;
     };
@@ -32,28 +32,30 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    },
-    {
-      label: "Revenue2",
-      backgroundColor: "#678983",
-      hoverBackgroundColor: "#439A97",
-      borderColor: "#678983",
-      data: [4200, 5012, 5851, 6841, 4821, 10984],
-    },
-    {
-      label: "Revenue3",
-      backgroundColor: "#FF9E9E",
-      hoverBackgroundColor: "#FFCAC8",
-      borderColor: "#FF9E9E",
-      data: [4200, 5012, 5851, 6841, 4821, 10984],
-    }],
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+      {
+        label: "Revenue",
+        backgroundColor: "#4e73df", // warna belakang
+        hoverBackgroundColor: "#2e59d9", // warna ketika disentuh
+        borderColor: "#4e73df", // warna garis tepi
+        data: [4215, 5312, 6251, 7841, 9821, 14984, 0],
+      },
+      {
+        label: "Revenue2",
+        backgroundColor: "#678983",
+        hoverBackgroundColor: "#439A97",
+        borderColor: "#678983",
+        data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      },
+      {
+        label: "Revenue3",
+        backgroundColor: "#FF9E9E",
+        hoverBackgroundColor: "#FFCAC8",
+        borderColor: "#FF9E9E",
+        data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      }
+    ],
   },
   options: {
     maintainAspectRatio: false,
@@ -86,7 +88,7 @@ var myBarChart = new Chart(ctx, {
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
+          callback: function (value, index, values) {
             return '$' + number_format(value);
           }
         },
@@ -115,7 +117,7 @@ var myBarChart = new Chart(ctx, {
       displayColors: false,
       caretPadding: 10,
       callbacks: {
-        label: function(tooltipItem, chart) {
+        label: function (tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
           return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
         }

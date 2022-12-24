@@ -1,5 +1,7 @@
 <?php
+session_start();
 require "config/koneksi.php";
+$jumlah = 555;
 ?>
 
 <!DOCTYPE html>
@@ -354,6 +356,27 @@ require "config/koneksi.php";
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
+                    <?php
+                    if (isset($_SESSION['message'])) {
+                        echo "<h4>" . $_SESSION['message'] . "</h4>";
+                        unset($_SESSION['message']);
+                    }
+                    ?>
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="form-row mx-2">
+                                    <div class="col-md-12 mb-3">
+                                        <form action="import_excel_aksi.php" method="post" enctype="multipart/form-data">
+                                            <input type="file" name="import_file" id="" />
+                                            <button type="submit" name="import_excel" class="btn btn-primary">Import</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- form setting -->
                     <div class="row">
                         <div class="col-xl-6 col-md-6 mb-4">
@@ -373,6 +396,7 @@ require "config/koneksi.php";
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="form-row mx-2">
@@ -486,27 +510,34 @@ require "config/koneksi.php";
                         <!-- Area Chart -->
                         <div class="col-xl-8 col-lg-7">
                             <!-- Bar Chart -->
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4" style="height: 470px;">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">BOOKING</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-bar">
                                         <canvas id="myBarChart"></canvas>
                                     </div>
-                                    <hr>
-                                    Styling for the bar chart can be found in the
-                                    <code>/js/demo/chart-bar-demo.js</code> file.
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">BADE</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="myBarChart2"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Pie Chart -->
                         <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4" style="height: 470px;">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Kualitas Kredit</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -601,9 +632,14 @@ require "config/koneksi.php";
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
+    <script>
+        var javaScriptVar = "<?php echo $jumlah; ?>";
+    </script>
+
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="js/demo/chart-bar-demo.js"></script>
+    <script src="js/demo/chart-bar-demo2.js"></script>
 
 </body>
 
