@@ -1,14 +1,7 @@
 <?php
 session_start();
 require "config/koneksi.php";
-$jumlah = ['asas', 'asasas', 'asasas', 'asadadas'];
-
-$sql = "SELECT lending_bulan_berjalan FROM lending";
-$result = $koneksi->query($sql);
-
-while ($data = $result->fetch_assoc()) {
-    var_dump($data);
-}
+$tes_send_data = 'asasa';
 ?>
 
 <!DOCTYPE html>
@@ -644,8 +637,10 @@ while ($data = $result->fetch_assoc()) {
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-
-
+    
+    <script type="text/javascript">
+        var dataphp = "<?php echo $tes_send_data ?>";
+    </script>
     <!-- <script src="js/demo/chart-area-demo.js"></script> -->
     <script src="js/demo/chart-pie-demo2.js"></script>
     <script src="js/demo/chart-bar-demo.js"></script>

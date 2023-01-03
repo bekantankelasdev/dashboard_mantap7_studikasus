@@ -1,7 +1,8 @@
 <?php 
 require "config/koneksi.php";
 
-$sql = "SELECT lending_bulan_berjalan FROM lending";
+// berdasarkan nama KC, rentang tanggal
+$sql = "SELECT lending_bulan_berjalan FROM lending WHERE lending_nama_unit = 'KC PONTIANAK'";
 $result = $koneksi->query($sql);
 
 $data = array();
