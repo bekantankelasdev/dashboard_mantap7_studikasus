@@ -1,7 +1,14 @@
 <?php
 session_start();
 require "config/koneksi.php";
-$jumlah = 555;
+$jumlah = ['asas', 'asasas', 'asasas', 'asadadas'];
+
+$sql = "SELECT lending_bulan_berjalan FROM lending";
+$result = $koneksi->query($sql);
+
+while ($data = $result->fetch_assoc()) {
+    var_dump($data);
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +34,11 @@ $jumlah = 555;
 </head>
 
 <body id="page-top">
+
+    <script>
+
+       
+    </script>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -554,7 +566,7 @@ $jumlah = 555;
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                        <canvas id="myPieChart2"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
@@ -632,12 +644,10 @@ $jumlah = 555;
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script>
-        var javaScriptVar = "<?php echo $jumlah; ?>";
-    </script>
 
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+
+    <!-- <script src="js/demo/chart-area-demo.js"></script> -->
+    <script src="js/demo/chart-pie-demo2.js"></script>
     <script src="js/demo/chart-bar-demo.js"></script>
     <script src="js/demo/chart-bar-demo2.js"></script>
 

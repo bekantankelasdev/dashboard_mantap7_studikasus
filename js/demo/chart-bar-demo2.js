@@ -1,7 +1,20 @@
-console.log(javaScriptVar);
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
+
+// var ajax = new XMLHttpRequest();
+// ajax.open("GET", "get_data.php", true);
+// ajax.setRequestHeader("Accept", "application/json")
+// // ajax.setRequestHeader("Authorization", "Bearer {token}")
+// ajax.send();
+
+// ajax.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//         console.log(this.responseText);
+//         var data = JSON.parse(this.responseText);
+//         console.log(data);
+//     }
+// };
 
 function number_format(number, decimals, dec_point, thousands_sep) {
   // *     example: number_format(1234.56, 2, ',', ' ');
