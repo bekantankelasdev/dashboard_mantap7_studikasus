@@ -1,4 +1,3 @@
-console.log(dataphp);
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
@@ -35,20 +34,55 @@ var myPieChart = new Chart(ctx, {
   },
 });
 
-var ajax = new XMLHttpRequest();
-ajax.open("GET", "get_data.php", true);
-ajax.setRequestHeader("Accept", "application/json")
-// ajax.setRequestHeader("Authorization", "Bearer {token}")
-ajax.send();
+var data_kc = ''
+function get_value_kc() {
+  var option_html = document.getElementById("selected_kc");
+  var value = option_html.value;
+  console.log(value);
+  data_kc = value;
 
-ajax.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    console.log(this.responseText);
-    let data = JSON.parse(this.responseText);
-    console.log(data);
-    // myPieChart.data.labels = result.labels;
-    myPieChart.data.datasets[0].data = data
-    myPieChart.update();
+  var ajax = new XMLHttpRequest();
+  if (data_kc == '' || data_kc == 'semua') {
+    ajax.open(`GET`, `get_data.php`, true);
+  } else {
+    ajax.open(`GET`, `get_data.php?data_kc=${data_kc}`, true);
   }
-};
+  ajax.setRequestHeader("Accept", "application/json")
+  // ajax.setRequestHeader("Authorization", "Bearer {token}")
+  ajax.send();
+
+  ajax.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      let data = JSON.parse(this.responseText);
+      console.log(data);
+      // myPieChart.data.labels = result.labels;
+      myPieChart.data.datasets[0].data = data
+      myPieChart.update();
+    }
+  };
+}
+
+var ajax = new XMLHttpRequest();
+  if (data_kc == '' || data_kc == 'semua') {
+    ajax.open(`GET`, `get_data.php`, true);
+  } else {
+    ajax.open(`GET`, `get_data.php?data_kc=${data_kc}`, true);
+  }
+  ajax.setRequestHeader("Accept", "application/json")
+  // ajax.setRequestHeader("Authorization", "Bearer {token}")
+  ajax.send();
+
+  ajax.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      let data = JSON.parse(this.responseText);
+      console.log(data);
+      // myPieChart.data.labels = result.labels;
+      myPieChart.data.datasets[0].data = data
+      myPieChart.update();
+    }
+  };
+
+
 

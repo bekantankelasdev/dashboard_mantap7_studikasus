@@ -1,7 +1,6 @@
 <?php
 session_start();
 require "config/koneksi.php";
-$tes_send_data = 'asasa';
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +29,7 @@ $tes_send_data = 'asasa';
 
     <script>
 
-       
+
     </script>
 
     <!-- Page Wrapper -->
@@ -407,16 +406,16 @@ $tes_send_data = 'asasa';
                                 <div class="form-row mx-2">
                                     <div class="col-md-12 mb-3">
                                         <label for="validationCustom01">Pilihan KC</label>
-                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>Semua KC</option>
-                                            <option value="1">KC Banjarmasin</option>
-                                            <option value="2">KC Palangkaraya</option>
-                                            <option value="3">KC Samarinda</option>
-                                            <option value="4">KC Pontianak</option>
+                                        <select class="custom-select my-1 mr-sm-2" id="selected_kc">
+                                            <option selected value="semua">Semua KC</option>
+                                            <option value="KC Banjarmasin">KC Banjarmasin</option>
+                                            <option value="KC Palangkaraya">KC Palangkaraya</option>
+                                            <option value="KC Samarinda">KC Samarinda</option>
+                                            <option value="KC Pontianak"></option>
                                         </select>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary" onclick="get_value_kc()">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -637,9 +636,9 @@ $tes_send_data = 'asasa';
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    
+
     <script type="text/javascript">
-        var dataphp = "<?php echo $tes_send_data ?>";
+                
     </script>
     <!-- <script src="js/demo/chart-area-demo.js"></script> -->
     <script src="js/demo/chart-pie-demo2.js"></script>
