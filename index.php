@@ -514,16 +514,6 @@ require "config/koneksi.php";
                         <!-- Area Chart -->
                         <div class="col-xl-12 col-lg-7">
                             <!-- Bar Chart -->
-                            <div class="card shadow mb-4" style="height: 470px;">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">BOOKING</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-bar">
-                                        <canvas id="myBarChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">BADE</h6>
@@ -569,6 +559,9 @@ require "config/koneksi.php";
                                         </span>
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-info"></i> Referral
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-warning"></i> Referral
                                         </span>
                                     </div>
                                 </div>
@@ -642,7 +635,6 @@ require "config/koneksi.php";
     </script>
     <!-- <script src="js/demo/chart-area-demo.js"></script> -->
     <script src="js/demo/chart-pie-demo2.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
     <script src="js/demo/chart-bar-bade.js"></script>
 
 </body>

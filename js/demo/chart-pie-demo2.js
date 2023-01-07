@@ -7,13 +7,15 @@ var ctx = document.getElementById("myPieChart2");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
-    datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#4e73df', '#1cc88a', '#36b9cc', '#4e73df', '#1cc88a', '#36b9cc', '#4e73df', '#1cc88a', '#36b9cc'],
+        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#2e59d9', '#17a673', '#2c9faf', '#4e73df', '#1cc88a', '#36b9cc', '#4e73df', '#1cc88a', '#36b9cc'],
+        hoverBorderColor: "rgba(234, 236, 244, 1)",
+      }
+    ],
   },
   options: {
     maintainAspectRatio: false,
@@ -64,25 +66,21 @@ function get_value_kc() {
 }
 
 var ajax = new XMLHttpRequest();
-  if (data_kc == '' || data_kc == 'semua') {
-    ajax.open(`GET`, `get_data.php`, true);
-  } else {
-    ajax.open(`GET`, `get_data.php?data_kc=${data_kc}`, true);
-  }
-  ajax.setRequestHeader("Accept", "application/json")
-  // ajax.setRequestHeader("Authorization", "Bearer {token}")
-  ajax.send();
+ajax.open(`GET`, `get_data.php`, true);
+ajax.setRequestHeader("Accept", "application/json")
+// ajax.setRequestHeader("Authorization", "Bearer {token}")
+ajax.send();
 
-  ajax.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
-      let data = JSON.parse(this.responseText);
-      console.log(data);
-      // myPieChart.data.labels = result.labels;
-      myPieChart.data.datasets[0].data = data
-      myPieChart.update();
-    }
-  };
+ajax.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    let data = JSON.parse(this.responseText);
+    console.log(data);
+    myPieChart.data.labels = data.labels;
+    myPieChart.data.datasets[0].data = data.data
+    myPieChart.update();
+    console.log(myPieChart.data);
+  }
+};
 
 
 
