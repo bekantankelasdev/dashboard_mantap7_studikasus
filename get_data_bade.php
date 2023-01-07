@@ -34,13 +34,13 @@ while ($row_data = $result_data->fetch_object()) {
     array_push($data, $obj_data);
 }
 
-
 for ($i = 0; $i < count($format_chart_per_bulan); $i++) {
     $data_value = array();
     for ($index_per_unit = 0; $index_per_unit < count($format_chart_per_bulan[$i]); $index_per_unit++) {
         $data_value_per_unit = 0;
         for ($index_data = 0; $index_data < count($data); $index_data++) {
-            if ($format_chart_per_bulan[$i][$index_per_unit]->label == $data[$index_data]->label && $i == $data[$index_data]->bulan) {
+
+            if ($format_chart_per_bulan[$i][$index_per_unit]->label == $data[$index_data]->label && $i == ($data[$index_data]->bulan - 1)) {
                 $data_value_per_unit = (int)$data[$index_data]->data;
             }
         }
