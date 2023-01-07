@@ -28,40 +28,40 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
+var ctx = document.getElementById("myBarChart2");
+var myBarChart2 = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    // labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
-      {
-        label: "Banjarmasin",
-        backgroundColor: "#EB455F", // warna belakang
-        hoverBackgroundColor: "#FF597B", // warna ketika disentuh
-        borderColor: "#EB455F", // warna garis tepi
-        data: [4215, 5312, 6251, 7841, 9821, 14984, 0],
-      },
-      {
-        label: "Palangkaraya",
-        backgroundColor: "#62B6B7",
-        hoverBackgroundColor: "#97DECE",
-        borderColor: "#62B6B7",
-        data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
-      },
-      {
-        label: "Samarinda",
-        backgroundColor: "#FFB100",
-        hoverBackgroundColor: "#FBC252",
-        borderColor: "#FFB100",
-        data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
-      },
-      {
-        label: "Pontianak",
-        backgroundColor: "#0A2647",
-        hoverBackgroundColor: "#243763",
-        borderColor: "#0A2647",
-        data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
-      }
+      // {
+      //   label: "Banjarmasin",
+      //   backgroundColor: "#EB455F", // warna belakang
+      //   hoverBackgroundColor: "#FF597B", // warna ketika disentuh
+      //   borderColor: "#EB455F", // warna garis tepi
+      //   data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      // },
+      // {
+      //   label: "Palangkaraya",
+      //   backgroundColor: "#62B6B7",
+      //   hoverBackgroundColor: "#97DECE",
+      //   borderColor: "#62B6B7",
+      //   data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      // },
+      // {
+      //   label: "Samarinda",
+      //   backgroundColor: "#FFB100",
+      //   hoverBackgroundColor: "#FBC252",
+      //   borderColor: "#FFB100",
+      //   data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      // },
+      // {
+      //   label: "Pontianak",
+      //   backgroundColor: "#0A2647",
+      //   hoverBackgroundColor: "#243763",
+      //   borderColor: "#0A2647",
+      //   data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      // }
     ],
   },
   options: {
@@ -84,7 +84,7 @@ var myBarChart = new Chart(ctx, {
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
+          // maxTicksLimit: 6 // jumlah label yang muncul pada horizontal
         },
         maxBarThickness: 25,
       }],
@@ -96,7 +96,7 @@ var myBarChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function (value, index, values) {
-            return '$' + number_format(value);
+            return 'Rp. ' + number_format(value);
           }
         },
         gridLines: {
@@ -126,9 +126,51 @@ var myBarChart = new Chart(ctx, {
       callbacks: {
         label: function (tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': Rp. ' + number_format(tooltipItem.yLabel);
         }
       }
     },
   }
 });
+
+var ajax = new XMLHttpRequest();
+ajax.open("GET", "get_data_bade.php", true);
+ajax.setRequestHeader("Accept", "application/json")
+ajax.send();
+
+ajax.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    let data = JSON.parse(this.responseText);
+    myBarChart2.data.labels = data.label;
+
+    let data_per_unit_ponti = []
+    let data_per_unit_bjm = []
+    let data_per_unit_sam = []
+    for (let index = 0; index < data.data.length; index++) {
+      data_per_unit_ponti.push(data.data[index][0].data)
+      data_per_unit_bjm.push(data.data[index][1].data)
+      data_per_unit_sam.push(data.data[index][2].data)
+    }
+
+    let data_set = []
+    for (let index_unit = 0; index_unit < data.unit.length; index_unit++) {
+      let object =
+      {
+        label: data.unit[index_unit],
+        backgroundColor: "#EB455F", // warna belakang
+        hoverBackgroundColor: "#FF597B", // warna ketika disentuh
+        borderColor: "#EB455F", // warna garis tepi
+        data: [],
+      }
+      for (let index = 0; index < data.data.length; index++) {
+        object.data.push(data.data[index][index_unit].data)
+      }
+      data_set.push(object);
+    }
+    
+    myBarChart2.data.datasets = data_set
+
+    myBarChart2.update();
+    console.log(myBarChart2.data.datasets);
+  }
+};

@@ -1,20 +1,8 @@
+console.log('aaaaa');
+
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
-
-// var ajax = new XMLHttpRequest();
-// ajax.open("GET", "get_data.php", true);
-// ajax.setRequestHeader("Accept", "application/json")
-// // ajax.setRequestHeader("Authorization", "Bearer {token}")
-// ajax.send();
-
-// ajax.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//         console.log(this.responseText);
-//         var data = JSON.parse(this.responseText);
-//         console.log(data);
-//     }
-// };
 
 function number_format(number, decimals, dec_point, thousands_sep) {
   // *     example: number_format(1234.56, 2, ',', ' ');
@@ -25,7 +13,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
     dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
     s = '',
-    toFixedFix = function(n, prec) {
+    toFixedFix = function (n, prec) {
       var k = Math.pow(10, prec);
       return '' + Math.round(n * k) / k;
     };
@@ -47,27 +35,36 @@ var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    },
-    {
-      label: "Revenue2",
-      backgroundColor: "#678983",
-      hoverBackgroundColor: "#439A97",
-      borderColor: "#678983",
-      data: [4200, 5012, 5851, 6841, 4821, 10984],
-    },
-    {
-      label: "Revenue3",
-      backgroundColor: "#FF9E9E",
-      hoverBackgroundColor: "#FFCAC8",
-      borderColor: "#FF9E9E",
-      data: [4200, 5012, 5851, 6841, 4821, 10984],
-    }],
+    datasets: [
+      {
+        label: "Banjarmasin",
+        backgroundColor: "#EB455F", // warna belakang
+        hoverBackgroundColor: "#FF597B", // warna ketika disentuh
+        borderColor: "#EB455F", // warna garis tepi
+        data: [4215, 5312, 6251, 7841, 9821, 14984, 0],
+      },
+      {
+        label: "Palangkaraya",
+        backgroundColor: "#62B6B7",
+        hoverBackgroundColor: "#97DECE",
+        borderColor: "#62B6B7",
+        data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      },
+      {
+        label: "Samarinda",
+        backgroundColor: "#FFB100",
+        hoverBackgroundColor: "#FBC252",
+        borderColor: "#FFB100",
+        data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      },
+      {
+        label: "Pontianak",
+        backgroundColor: "#0A2647",
+        hoverBackgroundColor: "#243763",
+        borderColor: "#0A2647",
+        data: [4200, 5012, 5851, 6841, 4821, 10984, 0],
+      }
+    ],
   },
   options: {
     maintainAspectRatio: false,
@@ -100,7 +97,7 @@ var myBarChart = new Chart(ctx, {
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
+          callback: function (value, index, values) {
             return '$' + number_format(value);
           }
         },
@@ -129,7 +126,7 @@ var myBarChart = new Chart(ctx, {
       displayColors: false,
       caretPadding: 10,
       callbacks: {
-        label: function(tooltipItem, chart) {
+        label: function (tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
           return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
         }
@@ -137,3 +134,27 @@ var myBarChart = new Chart(ctx, {
     },
   }
 });
+
+var ajax = new XMLHttpRequest();
+ajax.open("GET", "get_data_bade.php", true);
+ajax.setRequestHeader("Accept", "application/json")
+ajax.send();
+
+ajax.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    let data = JSON.parse(this.responseText);
+    console.log(data);
+    myBarChart.data.labels = data.label;
+
+    myBarChart.data.datasets[0].data = {
+      label: data.unit,
+      backgroundColor: "#EB455F", // warna belakang
+      hoverBackgroundColor: "#FF597B", // warna ketika disentuh
+      borderColor: "#EB455F", // warna garis tepi
+      data: data.label,
+    }
+    myBarChart.update();
+  }
+};
+
+

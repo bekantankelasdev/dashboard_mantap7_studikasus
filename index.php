@@ -513,7 +513,7 @@ $tes_send_data = 'asasa';
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-7">
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4" style="height: 470px;">
                                 <div class="card-header py-3">
@@ -644,7 +644,7 @@ $tes_send_data = 'asasa';
     <!-- <script src="js/demo/chart-area-demo.js"></script> -->
     <script src="js/demo/chart-pie-demo2.js"></script>
     <script src="js/demo/chart-bar-demo.js"></script>
-    <script src="js/demo/chart-bar-demo2.js"></script>
+    <script src="js/demo/chart-bar-bade.js"></script>
 
 </body>
 
