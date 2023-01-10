@@ -552,16 +552,16 @@ require "config/koneksi.php";
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
+                                            <i class="fas fa-circle" style="color: #4e73df"></i> KC Banjarmasin
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
+                                            <i class="fas fa-circle" style="color: #1cc88a"></i> KC Palangkaraya
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
+                                            <i class="fas fa-circle" style="color: #36b9cc"></i> KC Pontianak
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-warning"></i> Referral
+                                            <i class="fas fa-circle" style="color: #4E6C50"></i> KC Samarinda
                                         </span>
                                     </div>
                                 </div>

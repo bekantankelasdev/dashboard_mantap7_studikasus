@@ -3,9 +3,9 @@ require "config/koneksi.php";
 
 if (isset($_GET['data_kc'])) {
     $dataKC = $_GET['data_kc'];
-    $sql = "SELECT lending_bulan_berjalan, lending_nama_unit FROM lending WHERE lending_nama_unit = '$dataKC'";
+    $sql = "SELECT SUM(lending_bulan_berjalan) as lending_bulan_berjalan, lending_nama_unit FROM lending WHERE lending_nama_unit = '$dataKC' group by lending_nama_unit";
 } else {
-    $sql = "SELECT lending_bulan_berjalan, lending_nama_unit FROM lending";
+    $sql = "SELECT SUM(lending_bulan_berjalan) as lending_bulan_berjalan, lending_nama_unit FROM lending group by lending_nama_unit order by lending_nama_unit";
 }
 
 // berdasarkan nama KC, rentang tanggal
