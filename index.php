@@ -388,14 +388,14 @@ require "config/koneksi.php";
                                 <div class="form-row mx-2">
                                     <div class="col-md-12 mb-3">
                                         <label for="validationCustom01">Tanggal Awal</label>
-                                        <input type="date" class="form-control" id="validationCustom01">
+                                        <input type="date" class="form-control" id="tanggal_awal">
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <label for="validationCustom01">Tanggal Akhir</label>
-                                        <input type="date" class="form-control" id="validationCustom01">
+                                        <input type="date" class="form-control" id="tanggal_akhir">
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary" onclick="get_value_rentang()">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -411,7 +411,7 @@ require "config/koneksi.php";
                                             <option value="KC Banjarmasin">KC Banjarmasin</option>
                                             <option value="KC Palangkaraya">KC Palangkaraya</option>
                                             <option value="KC Samarinda">KC Samarinda</option>
-                                            <option value="KC Pontianak"></option>
+                                            <option value="KC Pontianak">KC Pontianak</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12 mb-3">

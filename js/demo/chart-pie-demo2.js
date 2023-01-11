@@ -65,6 +65,34 @@ function get_value_kc() {
   };
 }
 
+function get_value_rentang() {
+  var tanggal_awal = document.getElementById("tanggal_awal");
+  var value_tanggal_awal = tanggal_awal.value;
+  var tanggal_akhir = document.getElementById("tanggal_akhir");
+  var value_tanggal_akhir = tanggal_akhir.value;
+
+  var ajax = new XMLHttpRequest();
+  if (value_tanggal_awal == '' && value_tanggal_akhir == '') {
+    ajax.open(`GET`, `get_data.php`, true);
+  } else {
+    ajax.open(`GET`, `get_data.php?value_tanggal_awal=${value_tanggal_awal}&value_tanggal_akhir=${value_tanggal_akhir}`, true);
+  }
+  ajax.setRequestHeader("Accept", "application/json")
+  // ajax.setRequestHeader("Authorization", "Bearer {token}")
+  ajax.send();
+
+  ajax.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      let data = JSON.parse(this.responseText);
+      console.log(data);
+      // myPieChart.data.labels = result.labels;
+      myPieChart.data.datasets[0].data = data
+      myPieChart.update();
+    }
+  };
+}
+
 var ajax = new XMLHttpRequest();
 ajax.open(`GET`, `get_data.php`, true);
 ajax.setRequestHeader("Accept", "application/json")
