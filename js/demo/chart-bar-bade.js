@@ -32,7 +32,6 @@ var ctx = document.getElementById("myBarChart2");
 var myBarChart2 = new Chart(ctx, {
   type: 'bar',
   data: {
-    // labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
       // {
       //   label: "Banjarmasin",
@@ -143,16 +142,8 @@ ajax.send();
 ajax.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let data = JSON.parse(this.responseText);
-    myBarChart2.data.labels = data.label;
+    myBarChart2.data.labels = data.label; // bulan
 
-    let data_per_unit_ponti = []
-    let data_per_unit_bjm = []
-    let data_per_unit_sam = []
-    for (let index = 0; index < data.data.length; index++) {
-      data_per_unit_ponti.push(data.data[index][0].data)
-      data_per_unit_bjm.push(data.data[index][1].data)
-      data_per_unit_sam.push(data.data[index][2].data)
-    }
     let data_set = []
     for (let index_unit = 0; index_unit < data.unit.length; index_unit++) {
       let object =
