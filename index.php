@@ -405,14 +405,21 @@ require "config/koneksi.php";
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="form-row mx-2">
                                     <div class="col-md-12 mb-3">
+
                                         <label for="validationCustom01">Pilihan KC</label>
                                         <select class="custom-select my-1 mr-sm-2" id="selected_kc">
                                             <option selected value="semua">Semua KC</option>
-                                            <option value="KC Banjarmasin">KC Banjarmasin</option>
-                                            <option value="KC Palangkaraya">KC Palangkaraya</option>
-                                            <option value="KC Samarinda">KC Samarinda</option>
-                                            <option value="KC Pontianak">KC Pontianak</option>
+                                            <?php
+                                            $sql_get_unit = "SELECT DISTINCT lending_nama_unit FROM lending";
+                                            $result_unit = $koneksi->query($sql_get_unit);
+                                            while ($row_unit = $result_unit->fetch_object()) {
+                                            ?>
+                                                <option value="<?= $row_unit->lending_nama_unit ?>"><?= $row_unit->lending_nama_unit ?></option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
+
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <button type="submit" class="btn btn-primary" onclick="get_value_kc()">Submit</button>
@@ -631,7 +638,7 @@ require "config/koneksi.php";
     <!-- Page level custom scripts -->
 
     <script type="text/javascript">
-                
+
     </script>
     <!-- <script src="js/demo/chart-area-demo.js"></script> -->
     <script src="js/demo/chart-pie-demo2.js"></script>

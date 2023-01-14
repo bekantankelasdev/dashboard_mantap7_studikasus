@@ -40,26 +40,24 @@ var data_kc = ''
 function get_value_kc() {
   var option_html = document.getElementById("selected_kc");
   var value = option_html.value;
-  console.log(value);
   data_kc = value;
 
   var ajax = new XMLHttpRequest();
-  if (data_kc == '' || data_kc == 'semua') {
+  if (data_kc == '' || data_kc == 'semua') { // atau
     ajax.open(`GET`, `get_data.php`, true);
   } else {
     ajax.open(`GET`, `get_data.php?data_kc=${data_kc}`, true);
   }
+
   ajax.setRequestHeader("Accept", "application/json")
   // ajax.setRequestHeader("Authorization", "Bearer {token}")
   ajax.send();
 
   ajax.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
       let data = JSON.parse(this.responseText);
-      console.log(data);
-      // myPieChart.data.labels = result.labels;
-      myPieChart.data.datasets[0].data = data
+      myPieChart.data.labels = data.labels;
+      myPieChart.data.datasets[0].data = data.data
       myPieChart.update();
     }
   };
@@ -86,8 +84,8 @@ function get_value_rentang() {
       console.log(this.responseText);
       let data = JSON.parse(this.responseText);
       console.log(data);
-      // myPieChart.data.labels = result.labels;
-      myPieChart.data.datasets[0].data = data
+      myPieChart.data.labels = data.labels;
+      myPieChart.data.datasets[0].data = data.data
       myPieChart.update();
     }
   };

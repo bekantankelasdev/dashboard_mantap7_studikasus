@@ -86,7 +86,7 @@ var myBarChart2 = new Chart(ctx, {
         ticks: {
           // maxTicksLimit: 6 // jumlah label yang muncul pada horizontal
         },
-        maxBarThickness: 25,
+        // maxBarThickness: 25,
       }],
       yAxes: [{
         ticks: {
@@ -133,6 +133,8 @@ var myBarChart2 = new Chart(ctx, {
   }
 });
 
+let color_unit = ['#4e73df', '#1cc88a', '#36b9cc', '#4E6C50', '#0081B4', '#D3756B', '#5BC0F8', '#F5EA5A'];
+
 var ajax = new XMLHttpRequest();
 ajax.open("GET", "get_data_bade.php", true);
 ajax.setRequestHeader("Accept", "application/json")
@@ -151,15 +153,14 @@ ajax.onreadystatechange = function () {
       data_per_unit_bjm.push(data.data[index][1].data)
       data_per_unit_sam.push(data.data[index][2].data)
     }
-
     let data_set = []
     for (let index_unit = 0; index_unit < data.unit.length; index_unit++) {
       let object =
       {
         label: data.unit[index_unit],
-        backgroundColor: "#EB455F", // warna belakang
-        hoverBackgroundColor: "#FF597B", // warna ketika disentuh
-        borderColor: "#EB455F", // warna garis tepi
+        backgroundColor: color_unit[index_unit], // warna belakang
+        hoverBackgroundColor: color_unit[index_unit], // warna ketika disentuh
+        borderColor: color_unit[index_unit], // warna garis tepi
         data: [],
       }
       for (let index = 0; index < data.data.length; index++) {
